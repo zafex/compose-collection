@@ -20,7 +20,7 @@ services:
     ports:
       - "19911:19911"
     environment:
-      - AUTH_PASSPHRASE=viloveul
-      - CACHE_ADAPTER=apcu
+      - VILOVEUL_AUTH_PASSPHRASE=viloveul
+      - VILOVEUL_CACHE_ADAPTER=apcu
       - ADMIN_EMAIL=me@viloveul.com
       - ADMIN_PASSWORD=dordordor

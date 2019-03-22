@@ -1,0 +1,26 @@
+version: "3.1"
+services:
+  relay-viloveul-cms:
+    image: fajrulaz/viloveul-cms-relay
+    container_name: viloveul-cms-relay
+    restart: always
+    volumes:
+      - ./private.pem:/app/private.pem
+      - ./public.pem:/app/public.pem
+    ports:
+      - "19910:19910"
+
+  api-viloveul-cms:
+    image: fajrulaz/viloveul-cms-api
+    container_name: viloveul-cms-api
+    restart: always
+    volumes:
+      - ./private.pem:/www/config/private.pem
+      - ./public.pem:/www/config/public.pem
+    ports:
+      - "19911:19911"
+    environment:
+      - AUTH_PASSPHRASE=viloveul
+      - CACHE_ADAPTER=apcu
+      - ADMIN_EMAIL=me@viloveul.com
+      - ADMIN_PASSWORD=dordordor

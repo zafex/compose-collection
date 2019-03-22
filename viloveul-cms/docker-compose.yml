@@ -24,3 +24,17 @@ services:
       - VILOVEUL_CACHE_ADAPTER=apcu
       - ADMIN_EMAIL=me@viloveul.com
       - ADMIN_PASSWORD=dordordor
+
+  dashboard-viloveul-cms:
+    image: fajrulaz/viloveul-cms-dashboard
+    container_name: viloveul-cms-dashboard
+    restart: always
+    ports:
+      - "19912:19912"
+
+  theme-viloveul-cms:
+    image: fajrulaz/viloveul-cms-theme
+    container_name: viloveul-cms-theme
+    restart: always
+    ports:
+      - "19913:19913"

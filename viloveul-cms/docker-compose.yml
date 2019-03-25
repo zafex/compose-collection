@@ -5,8 +5,8 @@ services:
     container_name: viloveul-cms-relay
     restart: always
     volumes:
-      - ./private.pem:/app/private.pem
-      - ./public.pem:/app/public.pem
+      - ./private.pem:/viloveul/var/private.pem
+      - ./public.pem:/viloveul/var/public.pem
     ports:
       - "19910:19910"
 
@@ -15,8 +15,8 @@ services:
     container_name: viloveul-cms-api
     restart: always
     volumes:
-      - ./private.pem:/www/config/private.pem
-      - ./public.pem:/www/config/public.pem
+      - ./private.pem:/viloveul/var/private.pem
+      - ./public.pem:/viloveul/var/public.pem
     ports:
       - "19911:19911"
     environment:

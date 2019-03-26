@@ -1,17 +1,18 @@
 version: "3.1"
 services:
-  db-viloveul-cms:
+  db:
     image: mariadb
-    container_name: viloveul-db
+    container_name: db-container
     restart: always
     environment:
+      - MYSQL_ROOT_PASSWORD=d3v3lopm3nt
       - MYSQL_DATABASE=viloveul_cms
       - MYSQL_USER=viloveul
       - MYSQL_PASSWORD=viloveul
 
-  queue-viloveul-cms:
+  queue:
     image: rabbitmq:3.7-alpine
-    container_name: viloveul-queue
+    container_name: queue-container
     restart: always
 
   relay-viloveul-cms:
@@ -21,8 +22,14 @@ services:
     volumes:
       - ./private.pem:/viloveul/var/private.pem
       - ./public.pem:/viloveul/var/public.pem
+    environment:
+      - VILOVEUL_TRANSPORT_DSN=amqp://queue:5672//
     ports:
       - "19910:19910"
+    depends_on:
+      - queue
+    links:
+      - queue
 
   api-viloveul-cms:
     image: fajrulaz/viloveul-cms-api
@@ -36,8 +43,16 @@ services:
     environment:
       - VILOVEUL_AUTH_PASSPHRASE=viloveul
       - VILOVEUL_CACHE_ADAPTER=apcu
+      - VILOVEUL_DB_HOST=db
+      - VILOVEUL_TRANSPORT_DSN=amqp://queue:5672//
       - ADMIN_EMAIL=me@viloveul.com
       - ADMIN_PASSWORD=dordordor
+    depends_on:
+      - db
+      - queue
+    links:
+      - db
+      - queue
 
   dashboard-viloveul-cms:
     image: fajrulaz/viloveul-cms-dashboard
@@ -45,6 +60,9 @@ services:
     restart: always
     ports:
       - "19912:19912"
+    depends_on:
+      - relay-viloveul-cms
+      - api-viloveul-cms
 
   theme-viloveul-cms:
     image: fajrulaz/viloveul-cms-theme
@@ -52,3 +70,7 @@ services:
     restart: always
     ports:
       - "19913:19913"
+    depends_on:
+      - relay-viloveul-cms
+      - api-viloveul-cms
+      - dashboard-viloveul-cms

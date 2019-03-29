@@ -1,0 +1,4 @@
+---
+- hosts: queue-host
+  roles:
+    - rabbitmq

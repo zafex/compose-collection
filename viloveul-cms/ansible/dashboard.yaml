@@ -1,0 +1,6 @@
+---
+- hosts: dashboard-host
+  roles:
+    - nodejs
+    - supervisor
+    - nginx

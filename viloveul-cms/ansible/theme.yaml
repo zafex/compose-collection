@@ -1,0 +1,6 @@
+---
+- hosts: theme-host
+  roles:
+    - nodejs
+    - supervisor
+    - nginx

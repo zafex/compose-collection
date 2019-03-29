@@ -1,5 +1,0 @@
----
-- hosts: relay-host
-  roles:
-    - nodejs
-    - supervisor

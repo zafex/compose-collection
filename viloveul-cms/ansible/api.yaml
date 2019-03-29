@@ -1,6 +1,0 @@
----
-- hosts: api-host
-  roles:
-    - php
-    - supervisor
-    - nginx

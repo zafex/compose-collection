@@ -1,0 +1,35 @@
+---
+- hosts: db-host
+  roles:
+    - mariadb
+
+- hosts: queue-host
+  roles:
+    - rabbitmq
+
+- hosts: api-host
+  roles:
+    - git
+    - php
+    - spv
+    - nginx
+
+- hosts: dashboard-host
+  roles:
+    - git
+    - nodejs
+    - spv
+    - nginx
+
+- hosts: relay-host
+  roles:
+    - git
+    - nodejs
+    - spv
+
+- hosts: theme-host
+  roles:
+    - git
+    - nodejs
+    - spv
+    - nginx

@@ -1,7 +1,0 @@
----
-- name: Install nodejs
-  sudo: yes
-  apt:
-    name: nodejs
-    update_cache: yes
-    state: latest

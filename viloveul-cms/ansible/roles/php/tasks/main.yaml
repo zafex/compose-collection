@@ -1,7 +1,0 @@
----
-- name: Install PHP
-  sudo: yes
-  apt:
-    name: php-fpm
-    update_cache: yes
-    state: latest

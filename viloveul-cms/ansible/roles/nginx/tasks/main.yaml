@@ -1,7 +1,0 @@
----
-- name: Install nginx
-  sudo: yes
-  apt:
-    name: nginx
-    update_cache: yes
-    state: latest

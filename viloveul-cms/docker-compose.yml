@@ -47,9 +47,9 @@ services:
     depends_on:
       - api-viloveul-cms
 
-  enduser-viloveul-cms:
-    image: fajrulaz/viloveul-cms-enduser
-    container_name: viloveul-cms-enduser
+  consumer-viloveul-cms:
+    image: fajrulaz/viloveul-cms-consumer
+    container_name: viloveul-cms-consumer
     restart: always
     ports:
       - "19913:19913"

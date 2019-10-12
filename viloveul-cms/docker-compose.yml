@@ -22,6 +22,7 @@ services:
     volumes:
       - ./private.pem:/viloveul/var/private.pem
       - ./public.pem:/viloveul/var/public.pem
+      - ./vendor:/viloveul/vendor
     ports:
       - "19911:19911"
     environment:
@@ -42,6 +43,8 @@ services:
     image: fajrulaz/viloveul-cms-dashboard
     container_name: viloveul-cms-dashboard
     restart: always
+    volumes:
+      - ./node_modules:/viloveul/node_modules
     ports:
       - "19912:19912"
     depends_on:
@@ -51,6 +54,8 @@ services:
     image: fajrulaz/viloveul-cms-consumer
     container_name: viloveul-cms-consumer
     restart: always
+    volumes:
+      - ./node_modules:/viloveul/node_modules
     ports:
       - "19913:19913"
     depends_on:
